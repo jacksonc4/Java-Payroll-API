@@ -12,6 +12,7 @@ public class PayrollService {
 	Datastore datastore = new Morphia().createDatastore(client, "payroll");
 	
 	public String addEmployee(Employee employee) {
+		System.out.println(employee);
 		datastore.save(employee);
 		return "Employee Added";
 	}
@@ -21,7 +22,7 @@ public class PayrollService {
 		
 		if (allHires != null) {
 			return allHires;
-		} 
+		}
 
 		return null;
 		
