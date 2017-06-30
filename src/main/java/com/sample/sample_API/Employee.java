@@ -1,22 +1,26 @@
 package com.sample.sample_API;
 
 import org.bson.types.ObjectId;
+import org.mongodb.morphia.annotations.Entity;
+import org.mongodb.morphia.annotations.Id;
 
 //Employee Object for Payroll API
+@Entity
 public class Employee {
+	@Id
 	private ObjectId id;
+	
 	private String name;
 	private double salary;
 	private boolean newHire;
 		
 	public Employee() {
-		System.out.println("New employee created");
 	}
 		
-	public ObjectId getID() {
+	public ObjectId getId() {
 		return id;
 	}
-		
+	
 	public String getName() {
 		return name;
 	}
@@ -28,11 +32,7 @@ public class Employee {
 	public boolean getHireStatus() {
 		return newHire;
 	}
-		
-	public void setID(ObjectId id) {
-		this.id = id;
-	}
-		
+
 	public void setName(String name) {
 		this.name = name;
 	}
