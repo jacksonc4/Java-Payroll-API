@@ -14,16 +14,19 @@ public class App {
 	public static void main(String[]args) {
 		final Gson gson = new Gson();
 		
+		//Add an employee to payroll
 		post("/add-employee", (req, res) -> {
 			Employee newEmployee = gson.fromJson(req.body(), Employee.class);
 			return payrollService.addEmployee(newEmployee);
 		}, gson::toJson);
 		
+		//Get all employees
 		get("/", (req, res) -> {
 			res.type("application/json");
 			return payrollService.getAllEmployees();
 		}, gson::toJson);
 				
+		//Find employee by ID
 		get("/:id", (req, res) -> {
 			res.type("application/json");
 			//Convert passed ID parameter from String to Object ID
@@ -37,6 +40,7 @@ public class App {
 			}
 		}, gson::toJson);
 		
+		//Remove employee from payroll
 		delete("/delete-employee/:id", (req, res) -> {
 			res.type("application/json");
 			//Convert passed ID parameter from String to Object ID
