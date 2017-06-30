@@ -9,6 +9,7 @@ import com.google.gson.*;
 //API routes
 public class App {
 	
+	//Payroll service object
 	public static PayrollService payrollService = new PayrollService();
 	
 	public static void main(String[]args) {
@@ -40,6 +41,19 @@ public class App {
 			}
 		}, gson::toJson);
 		
+		//Update an employee
+		put("/update-employee/:id", (req, res) -> {
+			res.type("application/json");
+			ObjectId id = new ObjectId(req.params(":id"));
+			Employee updatedEmployee = gson.fromJson(req.body(), Employee.class);
+			Employee employee = payrollService.updateEmployee(id, updatedEmployee);
+			if (employee != null) {
+				return employee.getName() + "'s information was updated.";
+			} else {
+				return null;
+			}
+		}, gson::toJson);
+				
 		//Remove employee from payroll
 		delete("/delete-employee/:id", (req, res) -> {
 			res.type("application/json");

@@ -10,9 +10,10 @@ public class Employee {
 	@Id
 	private ObjectId id;
 	
+	//Need to use non-primitives to check for nulls later
 	private String name;
-	private double salary;
-	private boolean newHire;
+	private Double salary;
+	private Boolean newHire;
 		
 	public Employee() {
 	}
@@ -25,11 +26,11 @@ public class Employee {
 		return name;
 	}
 		
-	public double getSalary() {
+	public Double getSalary() {
 		return salary;
 	}
 		
-	public boolean getHireStatus() {
+	public Boolean getHireStatus() {
 		return newHire;
 	}
 
